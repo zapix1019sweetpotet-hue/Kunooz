@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sweet Surprise! 🍮</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&family=Pacifico&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Quicksand', 'Comic Sans MS', cursive, sans-serif;
+            background: linear-gradient(135deg, #E6E6FA 0%, #DDA0DD 30%, #F4E4C1 70%, #FFE4B5 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '🌸 ✨ 🎀 💕 🌟 🍰 💖 🌸 ✨ 🎀 💕';
+            position: absolute;
+            top: 20px;
+            left: 0;
+            right: 0;
+            font-size: 1.5rem;
+            text-align: center;
+            animation: float 3s ease-in-out infinite;
+            z-index: 10;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Floating flan decorations */
+        .flan-decoration {
+            position: absolute;
+            font-size: 3rem;
+            opacity: 0.3;
+            animation: float-flan 6s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        .flan-decoration:nth-child(1) { top: 10%; left: 5%; animation-delay: 0s; }
+        .flan-decoration:nth-child(2) { top: 20%; right: 10%; animation-delay: 1s; }
+        .flan-decoration:nth-child(3) { bottom: 15%; left: 8%; animation-delay: 2s; }
+        .flan-decoration:nth-child(4) { bottom: 25%; right: 5%; animation-delay: 3s; }
+        .flan-decoration:nth-child(5) { top: 50%; left: 2%; animation-delay: 1.5s; }
+        .flan-decoration:nth-child(6) { top: 60%; right: 3%; animation-delay: 2.5s; }
+
+        @keyframes float-flan {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+
+        .container {
+            text-align: center;
+            max-width: 550px;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            padding: 40px 20px;
+            box-shadow: 0 20px 60px rgba(138, 43, 226, 0.3);
+            border: 3px solid rgba(230, 230, 250, 0.6);
+        }
+
+        h1 {
+            font-family: 'Pacifico', cursive;
+            color: #8B4789;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 3px 3px 0px #DDA0DD, 6px 6px 0px rgba(221, 160, 221, 0.3);
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .subtitle {
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 600;
+            color: #9370DB;
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
+        }
+
+        /* Image placeholder sections */
+        .character-images {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .character-placeholder {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #F4E4C1, #DDA0DD);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            border: 4px solid #E6E6FA;
+            box-shadow: 0 8px 20px rgba(138, 43, 226, 0.3);
+            animation: wiggle 2s ease-in-out infinite;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .character-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .character-placeholder:nth-child(2) {
+            animation-delay: 0.3s;
+        }
+
+        .character-placeholder:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(-5deg) scale(1); }
+            50% { transform: rotate(5deg) scale(1.05); }
+        }
+
+        .gift-box {
+            width: 240px;
+            height: 240px;
+            margin: 0 auto 30px;
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            filter: drop-shadow(0 15px 30px rgba(138, 43, 226, 0.4));
+        }
+
+        .gift-box:hover {
+            transform: scale(1.1) rotate(3deg);
+        }
+
+        .gift-box.opened {
+            pointer-events: none;
+        }
+
+        .box {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #DDA0DD 0%, #BA55D3 50%, #9370DB 100%);
+            border-radius: 25px;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(138, 43, 226, 0.5);
+            transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            border: 5px solid #E6E6FA;
+        }
+
+        .gift-box.opened .box {
+            transform: translateY(-40px) rotate(25deg) scale(0.4);
+            opacity: 0;
+        }
+
+        .ribbon-v {
+            position: absolute;
+            width: 45px;
+            height: 100%;
+            background: linear-gradient(to right, #F4E4C1, #DEB887);
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: inset 0 0 15px rgba(255,255,255,0.5);
+            border: 3px solid #D8BFD8;
+        }
+
+        .ribbon-h {
+            position: absolute;
+            width: 100%;
+            height: 45px;
+            background: linear-gradient(to bottom, #F4E4C1, #DEB887);
+            top: 50%;
+            transform: translateY(-50%);
+            box-shadow: inset 0 0 15px rgba(255,255,255,0.5);
+            border: 3px solid #D8BFD8;
+        }
+
+        .bow {
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90px;
+            height: 90px;
+            filter: drop-shadow(0 5px 15px rgba(244, 228, 193, 0.6));
+        }
+
+        .bow::before,
+        .bow::after {
+            content: '';
+            position: absolute;
+            width: 45px;
+            height: 55px;
+            background: linear-gradient(135deg, #F4E4C1, #DEB887);
+            border-radius: 50% 50% 0 50%;
+            box-shadow: 0 4px 15px rgba(222, 184, 135, 0.7);
+            border: 4px solid #E6E6FA;
+        }
+
+        .bow::before {
+            left: 0;
+            transform: rotate(-45deg);
+        }
+
+        .bow::after {
+            right: 0;
+            transform: rotate(45deg) scaleX(-1);
+        }
+
+        /* Flan-themed sparkles */
+        .sparkles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .sparkle {
+            position: absolute;
+            font-size: 2rem;
+            animation: sparkle 2s ease-in-out infinite;
+        }
+
+        .sparkle:nth-child(1) { top: 15%; left: 10%; animation-delay: 0s; }
+        .sparkle:nth-child(2) { top: 25%; right: 12%; animation-delay: 0.4s; }
+        .sparkle:nth-child(3) { bottom: 25%; left: 15%; animation-delay: 0.8s; }
+        .sparkle:nth-child(4) { bottom: 20%; right: 18%; animation-delay: 1.2s; }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0) rotate(0deg); }
+            50% { opacity: 1; transform: scale(1.3) rotate(180deg); }
+        }
+
+        .code-reveal {
+            background: linear-gradient(135deg, #FDFBF7 0%, #F5F0E8 100%);
+            border-radius: 30px;
+            padding: 45px 35px;
+            box-shadow: 0 20px 60px rgba(138, 43, 226, 0.4);
+            opacity: 0;
+            transform: scale(0.5) rotate(-15deg);
+            transition: all 0.9s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            border: 6px solid #E6E6FA;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .code-reveal::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: linear-gradient(90deg, #E6E6FA, #DDA0DD, #F4E4C1, #E6E6FA);
+            background-size: 200% 100%;
+            animation: gradient-shift 3s linear infinite;
+        }
+
+        @keyframes gradient-shift {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 200% 0%; }
+        }
+
+        .code-reveal.show {
+            opacity: 1;
+            transform: scale(1) rotate(0deg);
+        }
+
+        .flan-icon {
+            font-size: 5rem;
+            margin-bottom: 20px;
+            margin-top: 20px;
+            animation: rotate-wobble 4s ease-in-out infinite;
+            filter: drop-shadow(0 5px 15px rgba(244, 228, 193, 0.5));
+        }
+
+        @keyframes rotate-wobble {
+            0%, 100% { transform: rotate(-3deg) scale(1); }
+            25% { transform: rotate(3deg) scale(1.05); }
+            50% { transform: rotate(-2deg) scale(1.1); }
+            75% { transform: rotate(2deg) scale(1.05); }
+        }
+
+        /* Fireworks effect */
+        .firework {
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        @keyframes firework-explode {
+            0% {
+                opacity: 1;
+                transform: translate(0, 0) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(var(--tx), var(--ty)) scale(0);
+            }
+        }
+
+        .code-reveal h2 {
+            font-family: 'Pacifico', cursive;
+            color: #8B4789;
+            font-size: 2rem;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 0px #DDA0DD;
+        }
+
+        .apple-logo {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .gift-code {
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(135deg, #F9F5F0 0%, #F4E4C1 100%);
+            padding: 30px;
+            border-radius: 20px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #8B4789;
+            letter-spacing: 4px;
+            margin-bottom: 30px;
+            word-break: break-all;
+            border: 4px dashed #DDA0DD;
+            box-shadow: inset 0 4px 15px rgba(221, 160, 221, 0.3), 0 5px 20px rgba(138, 43, 226, 0.2);
+        }
+
+        .amount {
+            font-size: 3.5rem;
+            background: linear-gradient(135deg, #9370DB, #8B4789, #BA55D3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: bold;
+            margin-bottom: 25px;
+            filter: drop-shadow(2px 2px 4px rgba(147, 112, 219, 0.4));
+        }
+
+        .instructions {
+            color: #5D4E6D;
+            font-size: 1rem;
+            line-height: 2;
+            background: linear-gradient(135deg, #FAF9F7, #F0EDE6);
+            padding: 20px;
+            border-radius: 15px;
+            border: 3px solid #E6E6FA;
+            box-shadow: 0 4px 15px rgba(138, 43, 226, 0.15);
+        }
+
+        .tap-instruction {
+            color: #8B4789;
+            font-size: 1.4rem;
+            margin-top: 25px;
+            animation: pulse-lavender 2.5s infinite;
+            text-shadow: 2px 2px 4px rgba(230, 230, 250, 0.8);
+            font-weight: bold;
+        }
+
+        @keyframes pulse-lavender {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.08); }
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .confetti {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            animation: fall 4s linear infinite;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* Image upload instructions */
+        .upload-note {
+            background: rgba(230, 230, 250, 0.3);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            font-size: 0.85rem;
+            color: #8B4789;
+            border: 2px dashed #DDA0DD;
+        }
+
+        /* Popup image after gift opens */
+        .popup-image {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            border: 6px solid #E6E6FA;
+            box-shadow: 0 20px 60px rgba(138, 43, 226, 0.6);
+            opacity: 0;
+            transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            z-index: 1000;
+            background: linear-gradient(135deg, #F4E4C1, #DDA0DD);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 6rem;
+            overflow: hidden;
+        }
+
+        .popup-image.show {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .popup-image.hide {
+            transform: translate(-50%, -50%) scale(0) rotate(180deg);
+            opacity: 0;
+        }
+
+        .popup-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .gift-code {
+                font-size: 1.2rem;
+                letter-spacing: 2px;
+            }
+
+            .amount {
+                font-size: 2.8rem;
+            }
+
+            .character-placeholder {
+                width: 80px;
+                height: 80px;
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating flan decorations -->
+    <div class="flan-decoration">🍮</div>
+    <div class="flan-decoration">🍮</div>
+    <div class="flan-decoration">🍮</div>
+    <div class="flan-decoration">🍮</div>
+    <div class="flan-decoration">🍮</div>
+    <div class="flan-decoration">🍮</div>
+
+    <div class="sparkles">
+        <div class="sparkle">✨</div>
+        <div class="sparkle">💜</div>
+        <div class="sparkle">🌟</div>
+        <div class="sparkle">💫</div>
+    </div>
+
+    <div class="container">
+        <h1>Sweet Surprise! 🍮💜</h1>
+        <p class="subtitle">A delicious treat from someone special!</p>
+        
+        <!-- Character image placeholders - YOU CAN ADD YOUR IMAGES HERE! -->
+        <div class="character-images">
+            <div class="character-placeholder">
+                <!-- To add Pompompurin: upload image to GitHub, then add: -->
+                <img src="PPP.webp" alt="Pompompurin"> 
+                
+            </div>
+            <div class="character-placeholder">
+                <!-- To add cat image: upload image to GitHub, then add: -->
+                 <img src="Milly.jpg" alt="Uni Cat"> 
+            </div>
+            <div class="character-placeholder">
+                🍮
+            </div>
+        </div>
+        
+        <div class="gift-box" id="giftBox">
+            <div class="box">
+                <div class="ribbon-v"></div>
+                <div class="ribbon-h"></div>
+                <div class="bow"></div>
+            </div>
+        </div>
+
+        <p class="tap-instruction" id="tapInstruction">✨ Tap to unwrap your sweet surprise! ✨</p>
+
+        <div class="code-reveal" id="codeReveal">
+            <div class="flan-icon">🍰</div>
+            <h2>Your Apple Store Gift! 🍎</h2>
+            <div class="apple-logo"></div>
+            <div class="amount">1000 AED YAYYYYYYYYY</div>
+            <div class="gift-code" id="giftCode">X5CNDFM346JVFCJK</div>
+            <div class="instructions">
+                💝 <strong>or</strong><br>
+                <a href="https://apps.apple.com/redeem?code=X5CNDFM346JVFCJK&ref=EMO">click this instead meow</a>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Popup image that appears after opening gift -->
+    <div class="popup-image" id="popupImage">
+        <!-- To add your own photo: upload to GitHub, then add: -->
+         <img src="Uni.jpg" alt="Special photo"> 
+        
+    </div>
+
+    <script>
+        const giftBox = document.getElementById('giftBox');
+        const codeReveal = document.getElementById('codeReveal');
+        const tapInstruction = document.getElementById('tapInstruction');
+        const popupImage = document.getElementById('popupImage');
+
+        function createFirework(x, y) {
+            const colors = ['#FF1493', '#FFD700', '#00FFFF', '#FF69B4', '#9370DB', '#FFA500'];
+            const particleCount = 30;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'firework';
+                particle.style.left = x + 'px';
+                particle.style.top = y + 'px';
+                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                
+                const angle = (Math.PI * 2 * i) / particleCount;
+                const velocity = 100 + Math.random() * 100;
+                const tx = Math.cos(angle) * velocity;
+                const ty = Math.sin(angle) * velocity;
+                
+                particle.style.setProperty('--tx', tx + 'px');
+                particle.style.setProperty('--ty', ty + 'px');
+                particle.style.animation = 'firework-explode 1s ease-out forwards';
+                
+                document.body.appendChild(particle);
+                setTimeout(() => particle.remove(), 1000);
+            }
+        }
+
+        giftBox.addEventListener('click', function() {
+            giftBox.classList.add('opened');
+            tapInstruction.classList.add('hidden');
+            
+            // Show popup image first
+            setTimeout(() => {
+                popupImage.classList.add('show');
+                
+                // Create multiple firework explosions
+                const centerX = window.innerWidth / 2;
+                const centerY = window.innerHeight / 2;
+                
+                createFirework(centerX - 150, centerY - 100);
+                setTimeout(() => createFirework(centerX + 150, centerY - 100), 200);
+                setTimeout(() => createFirework(centerX, centerY - 150), 400);
+                setTimeout(() => createFirework(centerX - 100, centerY + 50), 600);
+                setTimeout(() => createFirework(centerX + 100, centerY + 50), 800);
+            }, 200);
+            
+            // Hide popup after 2 seconds and show gift code
+            setTimeout(() => {
+                popupImage.classList.remove('show');
+                popupImage.classList.add('hide');
+            }, 2000);
+            
+            // Create flan-themed confetti
+            const colors = ['#DDA0DD', '#E6E6FA', '#F4E4C1', '#9370DB', '#BA55D3'];
+            for(let i = 0; i < 40; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.animationDelay = Math.random() * 2 + 's';
+                    confetti.style.animationDuration = (Math.random() * 2 + 3) + 's';
+                    document.body.appendChild(confetti);
+                    setTimeout(() => confetti.remove(), 4000);
+                }, i * 40);
+            }
+            
+            setTimeout(() => {
+                codeReveal.classList.add('show');
+            }, 2500);
+        });
+    </script>
+</body>
+</html>
